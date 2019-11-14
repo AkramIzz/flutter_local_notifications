@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class NotificationDetails {
+    private static final String IS_INSISTENT = "isInsistent";
     private static final String PAYLOAD = "payload";
     private static final String MILLISECONDS_SINCE_EPOCH = "millisecondsSinceEpoch";
     private static final String CALLED_AT = "calledAt";
@@ -141,6 +142,7 @@ public class NotificationDetails {
     public Integer ledOffMs;
     public String ticker;
     public Boolean allowWhileIdle;
+    public Boolean isInsistent;
 
 
     // Note: this is set on the Android to save details about the icon that should be used when re-hydrating scheduled notifications when a device has been restarted.
@@ -182,6 +184,7 @@ public class NotificationDetails {
             notificationDetails.sound = (String) platformChannelSpecifics.get(SOUND);
             notificationDetails.enableVibration = (Boolean) platformChannelSpecifics.get(ENABLE_VIBRATION);
             notificationDetails.vibrationPattern = (long[]) platformChannelSpecifics.get(VIBRATION_PATTERN);
+            notificationDetails.isInsistent = (Boolean) platformChannelSpecifics.get(IS_INSISTENT);
             notificationDetails.groupKey = (String) platformChannelSpecifics.get(GROUP_KEY);
             notificationDetails.setAsGroupSummary = (Boolean) platformChannelSpecifics.get(SET_AS_GROUP_SUMMARY);
             notificationDetails.groupAlertBehavior = (Integer) platformChannelSpecifics.get(GROUP_ALERT_BEHAVIOR);

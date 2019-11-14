@@ -38,6 +38,9 @@ class AndroidNotificationDetails {
   /// Indicates if vibration should be enabled when the notification is displayed. For Android 8.0+, this is tied to the specified channel cannot be changed afterward the channel has been created for the first time.
   bool enableVibration;
 
+  /// Indicates if the notification sound should play on repeat until the notification is cancelled or the notification window is opened
+  bool isInsistent;
+
   /// Indicates if lights should be enabled when the notification is displayed. For Android 8.0+, this is tied to the specified channel cannot be changed afterward the channel has been created for the first time.
   bool enableLights;
 
@@ -115,6 +118,7 @@ class AndroidNotificationDetails {
       this.sound,
       this.enableVibration = true,
       this.vibrationPattern,
+      this.isInsistent = false,
       this.groupKey,
       this.setAsGroupSummary,
       this.groupAlertBehavior = GroupAlertBehavior.All,
@@ -150,6 +154,7 @@ class AndroidNotificationDetails {
       'sound': sound,
       'enableVibration': enableVibration,
       'vibrationPattern': vibrationPattern,
+      'isInsistent' : isInsistent,
       'style': style.index,
       'styleInformation': styleInformation == null
           ? DefaultStyleInformation(false, false).toMap()

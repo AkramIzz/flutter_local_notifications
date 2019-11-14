@@ -142,7 +142,11 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         setLights(notificationDetails, builder);
         setStyle(context, notificationDetails, builder);
         setProgress(notificationDetails, builder);
-        return builder.build();
+        Notification notification = builder.build();
+        if (notificationDetails.isInsistent) {
+            notification.flags |= NotificationCompat.FLAG_INSISTENT;
+        }
+        return notification;
     }
 
     private static void setSmallIcon(Context context, NotificationDetails notificationDetails, NotificationCompat.Builder builder) {
