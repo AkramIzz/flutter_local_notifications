@@ -13,6 +13,7 @@ import android.graphics.BitmapFactory;
 import android.media.AudioAttributes;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import java.io.File;
 import android.os.Build;
 import android.text.Html;
 import android.text.Spanned;
@@ -578,9 +579,12 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         if (StringUtils.isNullOrEmpty(notificationDetails.sound)) {
             uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         } else {
-
-            int soundResourceId = context.getResources().getIdentifier(notificationDetails.sound, "raw", context.getPackageName());
-            return Uri.parse("android.resource://" + context.getPackageName() + "/" + soundResourceId);
+            if (notificationDetails.isSoundStoredLocally) {
+                return Uri.fromFile(new File(notificationDetails.sound));
+            } else {
+                int soundResourceId = context.getResources().getIdentifier(notificationDetails.sound, "raw", context.getPackageName());
+                return Uri.parse("android.resource://" + context.getPackageName() + "/" + soundResourceId);
+            }
         }
         return uri;
     }

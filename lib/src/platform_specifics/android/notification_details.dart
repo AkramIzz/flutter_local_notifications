@@ -32,6 +32,9 @@ class AndroidNotificationDetails {
   /// Indicates if a sound should be played when the notification is displayed. For Android 8.0+, this is tied to the specified channel cannot be changed afterward the channel has been created for the first time.
   bool playSound;
 
+  // Indicates if the sound is a file stored in local/external storage of device as opposed to being bundled with the app
+  bool isSoundStoredLocally;
+
   /// The sound to play for the notification. Requires setting [playSound] to true for it to work. If [playSound] is set to true but this is not specified then the default sound is played. For Android 8.0+, this is tied to the specified channel cannot be changed afterward the channel has been created for the first time.
   String sound;
 
@@ -115,6 +118,7 @@ class AndroidNotificationDetails {
       this.style = AndroidNotificationStyle.Default,
       this.styleInformation,
       this.playSound = true,
+      this.isSoundStoredLocally = false,
       this.sound,
       this.enableVibration = true,
       this.vibrationPattern,
@@ -151,6 +155,7 @@ class AndroidNotificationDetails {
       'importance': importance.value,
       'priority': priority.value,
       'playSound': playSound,
+      'isSoundStoredLocally': isSoundStoredLocally,
       'sound': sound,
       'enableVibration': enableVibration,
       'vibrationPattern': vibrationPattern,

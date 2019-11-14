@@ -19,6 +19,7 @@ import java.util.Map;
 
 public class NotificationDetails {
     private static final String IS_INSISTENT = "isInsistent";
+    private static final String IS_SOUND_STORED_LOCALLY = "isSoundStoredLocally";
     private static final String PAYLOAD = "payload";
     private static final String MILLISECONDS_SINCE_EPOCH = "millisecondsSinceEpoch";
     private static final String CALLED_AT = "calledAt";
@@ -112,6 +113,7 @@ public class NotificationDetails {
     public Integer priority;
     public Boolean playSound;
     public String sound;
+    public Boolean isSoundStoredLocally;
     public Boolean enableVibration;
     public long[] vibrationPattern;
     public NotificationStyle style;
@@ -182,6 +184,7 @@ public class NotificationDetails {
             notificationDetails.priority = (Integer) platformChannelSpecifics.get(PRIORITY);
             notificationDetails.playSound = (Boolean) platformChannelSpecifics.get(PLAY_SOUND);
             notificationDetails.sound = (String) platformChannelSpecifics.get(SOUND);
+            notificationDetails.isSoundStoredLocally = (Boolean) platformChannelSpecifics.get(IS_SOUND_STORED_LOCALLY);
             notificationDetails.enableVibration = (Boolean) platformChannelSpecifics.get(ENABLE_VIBRATION);
             notificationDetails.vibrationPattern = (long[]) platformChannelSpecifics.get(VIBRATION_PATTERN);
             notificationDetails.isInsistent = (Boolean) platformChannelSpecifics.get(IS_INSISTENT);
