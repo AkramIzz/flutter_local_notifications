@@ -736,7 +736,7 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         if (hasInvalidIcon(result, notificationDetails.icon) ||
                 hasInvalidLargeIcon(result, notificationDetails.largeIcon, notificationDetails.largeIconBitmapSource) ||
                 hasInvalidBigPictureResources(result, notificationDetails) ||
-                hasInvalidSound(result, notificationDetails.sound) ||
+                // hasInvalidSound(result, notificationDetails.sound) ||
                 hasInvalidLedDetails(result, notificationDetails)) {
             return null;
         }
