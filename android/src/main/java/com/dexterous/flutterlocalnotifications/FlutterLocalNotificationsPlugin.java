@@ -762,7 +762,7 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
             int soundResourceId = registrar.context().getResources().getIdentifier(sound, "raw", registrar.context().getPackageName());
             File file = new File(registrar.context().getFilesDir(), sound);
             if (soundResourceId == 0 && !file.exists()) {
-                result.error(INVALID_SOUND_ERROR_CODE, INVALID_RAW_RESOURCE_ERROR_MESSAGE, null);
+                result.error(INVALID_SOUND_ERROR_CODE, "File " + sound + " doesn't exist in raw folder or in " + file.getAbsolutePath(), null);
                 return true;
             }
         }
