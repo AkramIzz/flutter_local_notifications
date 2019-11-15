@@ -581,7 +581,7 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
             uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         } else {
             if (notificationDetails.isSoundStoredLocally) {
-                File file = new File(context.getFilesDir(), notificationDetails.sound);
+                File file = new File(notificationDetails.sound);
                 // For the Notification Manager to be able to play the sound file, we need to change file permission to make it readable
                 file.setReadable(true, false);
                 return Uri.fromFile(file);
@@ -760,7 +760,7 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
     private boolean hasInvalidSound(Result result, String sound) {
         if (!StringUtils.isNullOrEmpty(sound)) {
             int soundResourceId = registrar.context().getResources().getIdentifier(sound, "raw", registrar.context().getPackageName());
-            File file = new File(registrar.context().getFilesDir(), sound);
+            File file = new File(sound);
             if (soundResourceId == 0 && !file.exists()) {
                 result.error(INVALID_SOUND_ERROR_CODE, "File " + sound + " doesn't exist in raw folder or in " + file.getAbsolutePath(), null);
                 return true;
