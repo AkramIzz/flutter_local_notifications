@@ -582,6 +582,8 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         } else {
             if (notificationDetails.isSoundStoredLocally) {
                 File file = new File(notificationDetails.sound);
+                // For the Notification Manager to be able to play the sound file, we need to change file permission to make it readable
+                file.setReadable(true, false);
                 return FileProvider.getUriForFile(context, "com.dexterous.fileprovider", file);
             } else {
                 int soundResourceId = context.getResources().getIdentifier(notificationDetails.sound, "raw", context.getPackageName());
