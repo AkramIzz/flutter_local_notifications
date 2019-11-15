@@ -741,7 +741,7 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
         if (hasInvalidIcon(result, notificationDetails.icon) ||
                 hasInvalidLargeIcon(result, notificationDetails.largeIcon, notificationDetails.largeIconBitmapSource) ||
                 hasInvalidBigPictureResources(result, notificationDetails) ||
-                // hasInvalidSound(result, notificationDetails.sound) ||
+                hasInvalidSound(result, notificationDetails.sound) ||
                 hasInvalidLedDetails(result, notificationDetails)) {
             return null;
         }
@@ -760,7 +760,8 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
     private boolean hasInvalidSound(Result result, String sound) {
         if (!StringUtils.isNullOrEmpty(sound)) {
             int soundResourceId = registrar.context().getResources().getIdentifier(sound, "raw", registrar.context().getPackageName());
-            if (soundResourceId == 0) {
+            File file = new File(sound);
+            if (soundResourceId == 0 && !file.exists()) {
                 result.error(INVALID_SOUND_ERROR_CODE, INVALID_RAW_RESOURCE_ERROR_MESSAGE, null);
                 return true;
             }
